@@ -1,0 +1,2 @@
+2024/06/23 16:50:08 [error] 12236#20120: *100 directory index of "C:/Users/jaill/Local Sites/medit/app/public/wp-content/uploads/" is forbidden, client: 127.0.0.1, server: , request: "GET /wp-content/uploads/?hmwp_preview=1&nocache=2063551231 HTTP/1.0", host: "medit.local"
+2024/06/23 16:50:10 [error] 12236#20120: *101 directory index of "C:/Users/jaill/Local Sites/medit/app/public/wp-content/uploads/" is forbidden, client: 127.0.0.1, server: , request: "GET /wp-content/uploads/?hmwp_preview=1&nocache=1523541687 HTTP/1.0", host: "medit.local"
