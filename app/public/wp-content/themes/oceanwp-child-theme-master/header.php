@@ -55,19 +55,19 @@ if (function_exists('get_field')) {
 	<div class="popup-overlay">
 		<div class="popup-salon">
 			<div class="popup-header">
-				<h3><?php echo $titre; ?> </h3>
+				<h3><?php echo esc_html($titre); ?> </h3>
 				<span class="popup-close"><i class="fa fa-times"></i></span>
 			</div>
-			<?php echo $description; ?>
+			<?php echo wp_kses_post($description); ?>
 			<div class="popup-details">
 				<div class="popup-address">
 					<p><b>Le lieu</b></p>
-					<?php echo $lieu; ?>
-					<a class="popup-link" href="<?php echo $lien; ?>" target="_blank">Voir sur Google Maps</a>
+					<?php echo esc_html($lieu); ?>
+					<a class="popup-link" href="<?php echo esc_url($lien); ?>" target="_blank">Voir sur Google Maps</a>
 				</div>
 				<div class="popup-address">
 					<p><b>La date</b></p>
-					<?php echo $date; ?>
+					<?php echo esc_html($date); ?>
 				</div>
 			</div>
 			<p class="popup-informations">Vous souhaitez plus d'informations concernant cet événement ?</p>
@@ -92,25 +92,3 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 });
 </script>
-
-
-<!-- Ajout d'un bouton contact au menu -->
-
-<?php
-
-/**
- * Shortcode pour ajouter un bouton
- */
-// function contact_btn() {
-
-// 	// Code du bouton
-// 	$string .= '<a href="/contact" class="contact-btn">Nous contacter</a>';
-
-// 	// On retourne le code
-// 	return $string;
-
-// }
-// // On publie le shortcode
-// add_shortcode('contact', 'contact_btn');
-
-// ?>
