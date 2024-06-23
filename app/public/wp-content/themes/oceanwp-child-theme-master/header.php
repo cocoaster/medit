@@ -44,46 +44,53 @@
 <!-- Ajout d'une popup pour annoncer la participation au salon -->
 
 <?php
-// On récupère les champs ACF nécessaires
-$titre=get_field('titre', 161);
-$description=get_field('description', 161);
-$lieu=get_field('lieu', 161);
-$date=get_field('date', 161);
-$lien=get_field('lien_google_maps', 161);
-?>
-
-<div class="popup-overlay">
-	<div class="popup-salon">
-		<div class="popup-header">
-			<h3><?php echo $titre; ?> </h3>
-			<span class="popup-close"><i class="fa fa-times"></i></span>
-		</div>
-		<?php echo $description; ?>
-		<div class="popup-details">
-			<div class="popup-address">
-				<p><b>Le lieu</b></p>
-				<?php echo $lieu; ?>
-				<a class="popup-link" href="<?php echo $lien; ?>" target="_blank">Voir sur Google Maps</a>
+if (function_exists('get_field')) {
+	// On récupère les champs ACF nécessaires
+	$titre = get_field('titre', 161);
+	$description = get_field('description', 161);
+	$lieu = get_field('lieu', 161);
+	$date = get_field('date', 161);
+	$lien = get_field('lien_google_maps', 161);
+	?>
+	<div class="popup-overlay">
+		<div class="popup-salon">
+			<div class="popup-header">
+				<h3><?php echo $titre; ?> </h3>
+				<span class="popup-close"><i class="fa fa-times"></i></span>
 			</div>
-			<div class="popup-address">
-				<p><b>La date</b></p>
-				<?php echo $date; ?>
+			<?php echo $description; ?>
+			<div class="popup-details">
+				<div class="popup-address">
+					<p><b>Le lieu</b></p>
+					<?php echo $lieu; ?>
+					<a class="popup-link" href="<?php echo $lien; ?>" target="_blank">Voir sur Google Maps</a>
+				</div>
+				<div class="popup-address">
+					<p><b>La date</b></p>
+					<?php echo $date; ?>
+				</div>
 			</div>
+			<p class="popup-informations">Vous souhaitez plus d'informations concernant cet événement ?</p>
+			<?php
+			// On insère le formulaire de demandes de renseignements
+			echo do_shortcode('[contact-form-7 id="910" title="Formulaire salon New York"]');
+			?>
 		</div>
-		<p class="popup-informations">Vous souhaitez plus d'informations concernant cet événement ?</p>
-		<?php
-		// On insère le formulaire de demandes de renseignements
-		do_shortcode('[contact-form-7 id="910" title="Formulaire salon New York"]');
-		?>
 	</div>
-</div>
+	<?php
+} else {
+	echo '<p>ACF plugin is not active. Please activate it to display the popup.</p>';
+}
+?>
 
 <!-- Code pour fermer la popup -->
 
 <script>
-$('.popup-close').click(function(){
-	$(this).parent().hide();
-})
+document.addEventListener('DOMContentLoaded', function() {
+	document.querySelector('.popup-close').addEventListener('click', function() {
+		this.closest('.popup-salon').style.display = 'none';
+	});
+});
 </script>
 
 
